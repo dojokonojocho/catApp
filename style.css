@@ -1,0 +1,204 @@
+* {
+    padding: 0;
+    margin: 0;
+    background-color: #181818;
+}
+
+html{
+  overflow:hidden;
+}
+
+.editor{
+    background-color: #eee;
+    opacity: 0.8;
+    position: absolute;
+    width: 15%;
+    height: 40%;
+    right: 30px;
+    top: 10px;
+    border-radius: 3%;
+    z-index: 1;
+    transition: opacity .2s;
+    min-width: 10%;
+    min-height: 35%;
+}
+
+.editor:hover{
+    opacity: 1;
+}
+
+
+.editorHeader{
+  position: relative;
+  top: 1%;
+  width: 100%;
+  height: 5%;
+  background: #eee;
+  border-radius: 10%;
+}
+
+
+
+
+.colorPicker {
+  position: relative;
+  width: 90%;
+  height: 28%;
+  top: 2%;
+  left: 4%;
+  border-width: 3px;
+  border: solid;
+  border-radius: 5%;
+  border-color: #666;
+  box-shadow: 2px 5px 10px #444;
+  background-color: #eee;
+}
+
+.rotatePicker {
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 100px;
+  top: 7%;
+  left: 4%;
+  border-width: 3px;
+  border: solid;
+  border-radius: 5%;
+  border-color: #666;
+  box-shadow: 2px 5px 10px #444;
+  background-color: #eee;
+}
+
+
+.extraPicker {
+  position: relative;
+  float: left;
+  width: 40%;
+  height: 54%;
+  top: 7%;
+  left: 8%;
+  border-width: 3px;
+  border: solid;
+  border-radius: 5%;
+  border-color: #666;
+  box-shadow: 2px 5px 10px #444;
+  background-color: #eee;
+
+}
+
+.colorSlider {
+    -webkit-appearance: none;
+    position: relative;
+    width: 90%;
+    height: 10%;
+    left: 5%;
+    margin-top: 10px;
+    border-radius: 4px;  
+    background: #bbb;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    box-shadow: 2px 5px 5px #888;
+  }
+
+  .colorSlider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+
+  .sizeSlider{
+    --thumbSize: 15px;
+    -webkit-appearance: none;
+    transform:rotate(90deg);
+    transform-origin: left;
+    position: relative;
+    width: 140px;
+    height: 6%;
+    left: 20%;
+    top: -1%;
+    border-radius: 4px;  
+    background: #bbb;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    box-shadow: 5px -2px 5px #888;
+
+  }
+
+  .sizeSlider:hover{
+    opacity: 1;
+  }
+
+  .rotateKnob {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    top: 9px;
+    left: 9px;
+    background: #bbb;
+    box-shadow: 2px 5px 10px #888;
+    border-radius:  50%;
+    background-image: radial-gradient(#888, #bbb);
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  .rotateKnob:hover{
+    opacity: 1;
+  }
+
+  .rotateThumb {
+    position: absolute;
+    width: 18%;
+    height: 18%;
+    top: 1px;
+    left: 32.5px;
+    background: #ddd;
+    box-shadow: 2px 5px 10px #888;
+    border-radius: 50%;
+  }
+  
+
+
+  .colorSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; 
+    cursor: pointer;
+  }
+
+#redSlider::-webkit-slider-thumb{
+    background: red;
+    box-shadow: 2px 5px 5px #888;
+}
+
+#greenSlider::-webkit-slider-thumb{
+    background: green;
+    box-shadow: 2px 5px 5px #888;
+}
+
+#blueSlider::-webkit-slider-thumb{
+    background: blue;
+    box-shadow: 2px 5px 5px #888;
+}
+  
+.sizeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--thumbSize);
+  height: var(--thumbSize);
+  border-radius: 50%; 
+  cursor: pointer;
+  background: #333;
+  box-shadow: 5px -2px 5px #888;
+}
+
+
+
+
+
+
