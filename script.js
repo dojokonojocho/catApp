@@ -337,16 +337,40 @@ document.querySelector('html').addEventListener('contextmenu', (event) => {
     clone = element.cloneNode(true);
     element.parentNode.replaceChild(clone, element);
 
+    element = document.querySelector('.sizeSlider');
+    clone = element.cloneNode(true);
+    element.parentNode.replaceChild(clone, element);
+
     document.querySelector('#redSlider').value = 128;
     document.querySelector('#greenSlider').value = 128;
     document.querySelector('#blueSlider').value = 128;
 
     document.querySelector('.rotateThumb').style.top = '1px';
     document.querySelector('.rotateThumb').style.left = '32.5px';
+
+    document.querySelector('.sizeSlider').value = 0;
+
+    makeSizeSliderThumbSizeResponsive();
 });
 
 
 // Make sizeSlider thumb size dynamic
-const Slider = document.querySelector('.sizeSlider')
-Slider.oninput =_=> Slider.style.setProperty('--thumbSize', `${Slider.value/20 + 12}px`)
+function makeSizeSliderThumbSizeResponsive(){
+    let slider = document.querySelector('.sizeSlider')
+    slider.oninput =_=> slider.style.setProperty('--thumbSize', `${slider.value/20 + 12}px`)
+    
+    slider = document.querySelector('.opacitySlider');
+    slider.onInput =_=> slider.style.setProperty('--borderWidth', `${slider.value}px`);
 
+}
+//makeSizeSliderThumbSizeResponsive();
+document.querySelector('.sizeSlider').style.setProperty('--thumbSize', '12px')
+
+document.querySelector('.sizeSlider').addEventListener('input', () => {
+    event.srcElement.style.setProperty('--thumbSize', `${event.srcElement.value/20 + 12}px`);
+});
+
+document.querySelector('.opacitySlider').addEventListener('input', () => {
+    event.srcElement.style.setProperty('--borderWidth', `${event.srcElement.value/22+1}px`);
+    console.log(`${event.srcElement.value/20}`);
+});

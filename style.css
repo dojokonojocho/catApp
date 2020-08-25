@@ -14,13 +14,11 @@ html{
     position: absolute;
     width: 15%;
     height: 40%;
-    right: 30px;
+    right: 15px;
     top: 10px;
     border-radius: 3%;
     z-index: 1;
     transition: opacity .2s;
-    min-width: 10%;
-    min-height: 35%;
 }
 
 .editor:hover{
@@ -102,33 +100,57 @@ html{
     box-shadow: 2px 5px 5px #888;
   }
 
-  .colorSlider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
+.colorSlider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
 
-  .sizeSlider{
-    --thumbSize: 15px;
-    -webkit-appearance: none;
-    transform:rotate(90deg);
-    transform-origin: left;
-    position: relative;
-    width: 140px;
-    height: 6%;
-    left: 20%;
-    top: -1%;
-    border-radius: 4px;  
-    background: #bbb;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    box-shadow: 5px -2px 5px #888;
+.sizeSlider{
+  --thumbSize: 15px;
+  -webkit-appearance: none;
+  transform:rotate(-90deg);
+  transform-origin: right;
+  position: relative;
+  width: 140px;
+  height: 10px;
+  right: 120px;
+  top: 0px;
+  border-radius: 4px;  
+  background: #bbb;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  box-shadow: -2px 5px 5px #888;
 
-  }
+}
 
-  .sizeSlider:hover{
-    opacity: 1;
-  }
+.sizeSlider:hover{
+  opacity: 1;
+}
+
+.opacitySlider{
+  --borderWidth: 4px;
+  -webkit-appearance: none;
+  transform:rotate(-90deg);
+  transform-origin: right;
+  position: absolute;
+  width: 140px;
+  height: 10px;
+  right: 30px;
+  top: 5px;
+  border-radius: 4px;  
+  background: #bbb;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  box-shadow: -2px 5px 5px #888;
+
+}
+
+.opacitySlider:hover{
+  opacity: 1;
+}
 
   .rotateKnob {
     position: relative;
@@ -143,6 +165,7 @@ html{
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    cursor: pointer;
   }
 
   .rotateKnob:hover{
@@ -158,6 +181,7 @@ html{
     background: #ddd;
     box-shadow: 2px 5px 10px #888;
     border-radius: 50%;
+    cursor: pointer;
   }
   
 
@@ -194,9 +218,37 @@ html{
   border-radius: 50%; 
   cursor: pointer;
   background: #333;
-  box-shadow: 5px -2px 5px #888;
+  box-shadow: -5px 2px 5px #888;
 }
 
+.opacitySlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px; 
+  padding: 5px;
+
+  box-shadow: -5px 2px 5px #888;
+  border-radius: 100% 0px;
+  border-width: var(--borderWidth);
+  border-style: solid;
+  border-color: #333;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  z-index: 1;
+}
+
+/*.eye{
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  right: 25px;
+  top: 16px;
+  background: rgba(20, 20, 20, 0.7);
+  opacity: 0.7;
+  z-index: 2;
+}*/
 
 
 

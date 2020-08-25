@@ -1,4 +1,7 @@
+
+
 function editCat(cat){
+
     let editor = document.querySelector('.editor');
 
     let baseColor = cat.querySelector('.catHead').style.backgroundColor;
@@ -30,6 +33,8 @@ function editCat(cat){
     editor.querySelector('#redSlider').value = red;
     editor.querySelector('#greenSlider').value = green;
     editor.querySelector('#blueSlider').value = blue;
+    editor.querySelector('.sizeSlider').value = parseInt(cat.querySelector('.catHead').style.width);
+    editor.querySelector('.sizeSlider').style.setProperty('--thumbSize', `${parseInt(cat.querySelector('.catHead').style.width)/20 + 12}px`);
 
     let element = editor.querySelector('.colorPicker');
     let clone = element.cloneNode(true);
@@ -39,13 +44,18 @@ function editCat(cat){
     clone = element.cloneNode(true);
     element.parentNode.replaceChild(clone, element);
 
+    element = document.querySelector('.sizeSlider');
+    clone = element.cloneNode(true);
+    element.parentNode.replaceChild(clone, element);
+
+    makeSizeSliderThumbSizeResponsive();
 
 
     editor.querySelector('#redSlider').addEventListener('input', (event) => {
         red = event.srcElement.value;
         updateColor();
     });
-    editor.querySelector('#greenSlider').addEventListener('input', (event) => {
+    editor.querySelector('#greenSlider').addEventListener('input', (event) => {    
         green = event.srcElement.value;
         updateColor();
     });
@@ -86,8 +96,6 @@ function editCat(cat){
         let thumbX = relativeMouseX * thumbRatio;
         let thumbY = relativeMouseY * thumbRatio;
 
-        console.log(relativeMouseX);
-
         document.querySelector('.rotateThumb').style.left = (parseFloat(window.getComputedStyle(document.querySelector('.rotateKnob')).getPropertyValue("width")) * 0.5) + thumbX - (parseFloat(window.getComputedStyle(document.querySelector('.rotateThumb')).getPropertyValue('width')) * 0.5) + 'px';
         document.querySelector('.rotateThumb').style.top = (parseFloat(window.getComputedStyle(document.querySelector('.rotateKnob')).getPropertyValue("height")) * 0.5) + thumbY - (parseFloat(window.getComputedStyle(document.querySelector('.rotateThumb')).getPropertyValue('height')) * 0.5) + 'px';
     
@@ -125,7 +133,7 @@ function editCat(cat){
 
 
 
-        let coeficientXList = [-0.275, 0.275, -0.285, 0.285, -0.201, 0.201, -0.215, 0.215, -0.145, 0.085, -0.325, 0.325, -0.325, 0.325];
+        let coeficientXList = [-0.275, 0.275, -0.285, 0.285, -0.201, 0.201, -0.215, 0.215, -0.14, 0.09, -0.325, 0.325, -0.325, 0.325];
         let coeficientYList = [-0.425, -0.425, -0.46, -0.46, -0.075, -0.075, -0.075, -0.075, 0.22, 0.22, 0, 0, 0.145, 0.145];
 
         children = cat.children;
@@ -144,7 +152,7 @@ function editCat(cat){
     }
   
     document.querySelector('.rotateKnob').addEventListener('mousedown', mousedown);
-    document.querySelector('.rotateKnob').addEventListener('mouseup', mouseup);
+    document.querySelector('.rotatePicker').addEventListener('mouseup', mouseup);
     document.querySelector('.rotateKnob').addEventListener('click', move);
 
 
@@ -177,11 +185,11 @@ function editCat(cat){
         //let catOriginX = parseFloat(cat.querySelector('.catHead').style.left) + (parseInt(cat.querySelector('.catHead').style.width) * 0.5);
         //let catOriginY = parseFloat(cat.querySelector('.catHead').style.top) + (parseInt(cat.querySelector('.catHead').style.height) * 0.5);
 
-        let coeficientXList = [0.5, -0.275, 0.275, -0.285, 0.285, -0.201, 0.201, -0.215, 0.215, -0.145, 0.085, -0.325, 0.325, -0.325, 0.325];
-        let coeficientYList = [0.5, -0.425, -0.425, -0.46, -0.46, -0.075, -0.075, -0.075, -0.075, 0.22, 0.22, 0, 0, 0.145, 0.145];
+        let coeficientXList = [0, -0.275, 0.275, -0.285, 0.285, -0.201, 0.201, -0.215, 0.215, -0.145, 0.085, -0.325, 0.325, -0.325, 0.325];
+        let coeficientYList = [0, -0.425, -0.425, -0.46, -0.46, -0.075, -0.075, -0.075, -0.075, 0.22, 0.22, 0, 0, 0.145, 0.145];
 
-        let coeficientWidthList = [1, 0.25]
-        let coeficientHeightList = [1, 0.45]
+        let coeficientWidthList = [1, 0.25, 0.25, 0.15, 0.15, 0.30, 0.30, 0.05, 0.05, 0.20, 0.20, 0.45, 0.45, 0.45, 0.45]
+        let coeficientHeightList = [1, 0.45, 0.45, 0.32, 0.32, 0.15, 0.15, 0.15, 0.15, 0.10, 0.10, 0.02, 0.02, 0.02, 0.02]
 
         let transform = cat.querySelector('.catEarLeft').style.transform;
         let rotation = 0;
@@ -212,21 +220,21 @@ function editCat(cat){
         children = cat.children;
 
     
-        for (let i = 0; i < 2; i++){  
-            let coeficientX = (coeficientXList[1] * Math.cos(rotation)) + (-(coeficientYList[1]) * Math.sin(rotation));
-            let coeficientY = (coeficientYList[1] * Math.cos(rotation)) - (-(coeficientXList[1]) * Math.sin(rotation));
+        for (let i = 0; i < 15; i++){  
+            let coeficientX = (coeficientXList[i] * Math.cos(rotation)) + (-(coeficientYList[i]) * Math.sin(rotation));
+            let coeficientY = (coeficientYList[i] * Math.cos(rotation)) - (-(coeficientXList[i]) * Math.sin(rotation));
             let coeficientWidth = coeficientWidthList[i];
             let coeficientHeight = coeficientHeightList[i];
 
             children[i].style.width = oldDiameter * sizeCoeficient * coeficientWidth + 'px';
             children[i].style.height = oldDiameter * sizeCoeficient * coeficientHeight + 'px';
 
-            children[i].style.left = catOriginX - coeficientX + 'px';
-            children[i].style.top = catOriginY - coeficientY + 'px';
+            children[i].style.left = catOriginX + (newDiameter * coeficientX) - ( parseFloat(children[i].style.width) * 0.5 ) + 'px';
+            children[i].style.top = catOriginY + (newDiameter * coeficientY) - ( parseFloat(children[i].style.height) * 0.5 ) + 'px';
 
             //console.log('catOriginY: ', catOriginY);
             //console.log('newDiameter: ', newDiameter);
-            //console.log('coeficientY: ', coeficientX);
+           // console.log('coeficientX: ', coeficientX);
             //console.log('height: ',  parseFloat(children[i].style.height) * 0.5);
           //  console.log('result: ', (catOriginY + (newDiameter * coeficientY) - ( parseFloat(children[i].style.height) * 0.5 )));
         } 
